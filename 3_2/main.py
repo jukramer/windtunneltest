@@ -1,2 +1,4 @@
-print('hello')
-print('hello again')
+from calc import *
+
+if __name__ == '__main__':
+    

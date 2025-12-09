@@ -24,10 +24,13 @@ class Calc:
         N = sp.integrate.simpson(xVals, pLowerVals) - sp.integrate.simpson(xVals, pUpperVals)
         D = rho*sp.integrate.simpson(yVals, V1Vals*(VInfArray - V1Vals)) + sp.integrate.simpson(yVals, pInfArray-p1Vals)
         L = N*(np.cos(alpha) + np.sin(alpha)**2/np.cos(alpha)) - D*np.tan(alpha)
-        M = sp.integrate.simpson(x=xVals, y=(pUpperVals - pLowerVals)*xVals)
+        M = sp.integrate.simpson(x=xVals, y=(pUpperVals - pLowerVals)*xVals) # Leading edge moment!
         
         # Lift, Drag, Moment, cl, cd, cm
         return L, D, M, L/(qInf*c), D/(qInf*c), M/(qInf*c**2)
+    
+    def calcPressureCenter(self, L, M):
+        return -M/L
     
 
 if __name__ == '__main__':

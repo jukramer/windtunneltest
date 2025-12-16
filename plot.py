@@ -68,8 +68,8 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
     try:
         if isinstance(axs[0,:], np.ndarray):
             axs = axs.ravel()
-    except IndexError:
-        pass
+    except TypeError:
+        axs = np.array([axs])
     
     for i, ax in enumerate(axs):
         # Handle extra plots

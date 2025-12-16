@@ -15,9 +15,12 @@ The parameters work as follows:\n
         If you have less plots than the max. allowed by your dimensions, the remaining plots will be filled in white.\n
 -figTitle: string, containing the overall title of your plots.\n
 -subTitles: tuple, containing the title for each of your subplots, in order (left-right then down).\n
--xLabels: tuple, containing the x axis labels for each of your subplots, in order (left-right then down).\n
--yLabels: tuple, containing the y axis labels for each of your subplots, in order (left-right then down).\n
--colors: tuple, containing the graph color for each of your plots, in order (left-right then down).\n
+-xLabels: tuple, containing the x axis labels for each of your subplots, in order (left-right then down). Example:\n
+        (xLabel1, xLabel2)\n
+-yLabels: tuple, containing the y axis labels for each of your subplots, in order (left-right then down). Example:\n
+        (yLabel1, yLabel2)\n
+-colors: tuple, containing the graph color for each of your plots, in order (left-right then down). Example:\n
+        ('blue', #FF23AA)\n
 """
 import matplotlib.pyplot as plt
 import numpy as np

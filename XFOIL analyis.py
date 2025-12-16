@@ -84,8 +84,14 @@ Bot_Xtr = [0.0198, 0.0173, 0.0181, 0.0244, 0.3718, 0.9108, 0.9432, 0.9652, 0.999
 
 alpha_array = np.array(alpha)
 Cl_array = np.array(CL)
+CD_array = np.array(CD)
+CM_array = np.array(CM)
 
-plt.plot(alpha_array, Cl_array)
-plt.show()
-#plotFailureMargin(alpha_array, Cl_array, (1, 1), ('Lift curve'), ('test',), (rf'Angle of attack $\alpha$ [deg]',), (rf'$C_l',))
+# plt.plot(alpha_array, Cl_array)
+# plt.show()
+plotFailureMargin(alpha_array, Cl_array, (1, 1), ('Lift curve'), ('test',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_l$',))
+
+plotFailureMargin(Cl_array, CD_array, (1, 1), ('Drag polar'), ('test',), ('$C_l$',), ('$C_d$',))
+
+plotFailureMargin(alpha_array, CM_array, (1, 1), ('Pitching moment curve'), ('test',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_m$',))
 #plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at different pressure gauge locations'), (rf'$\alpha$ = {alpha_string}{chr(176)}',), ("pressure gauge locations [mm]",), ("velocity [$m s^{-1}$]",))

@@ -5,6 +5,9 @@ from numpy.typing import NDArray
 
 row_nr = 9
 
+class DimensionError(Exception):
+    pass
+
 def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
     # Check for correct parameter dimensions/types
     if yVals.shape != xVals.shape:
@@ -48,6 +51,7 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
         # Handle extra plots
         try:
             ax.plot(xArrays[i], yArrays[i], color=colors[i])
+            ax.axhline(20, color='red') # <- replace 20 with the freestream velocity
         except IndexError:
             ax.set_axis_off()
             continue
@@ -58,12 +62,11 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
         ax.grid()
                 
     fig.tight_layout()
-    fig.suptitle(figTitle)
+    fig.suptitle(figTitle, weight='bold')
     plt.show()
 
 
 def calcvelocity(p_static, p_total, rho):
-
     v = math.sqrt(2 * (p_total - p_static) / rho)
     return v
 

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from fontTools.merge.util import avg_int
 
-path = "../Data/EXP_measure_wing.txt"
+path = "../Data/EXP_measure_wing_up.txt"
 
 df = pd.read_csv(path, delim_whitespace=True,skiprows=[1])
 

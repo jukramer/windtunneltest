@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 # =========================
 # USER SETTINGS
 # =========================
-FILE_PATH = "raw_raw_2D_retest2.txt"
-POSITIONS_FILE = "positions_p.txt"
-Vinf = 19.515          # m/s
-SELECTED_RUN_NR = 52   # change this to plot another alpha
+FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
+POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
+Vinf = 18.22          # m/s
+SELECTED_RUN_NR = 1   # change this to plot another alpha
 
 # =========================
 # FUNCTIONS
@@ -44,14 +44,12 @@ def calculate_cp(parts):
     alpha = float(parts[2])     # angle of attack
     rho   = float(parts[7])     # density
 
-    # Reference pressure (P_bar is in hPa → convert to Pa)
-    Pinf = float(parts[4]) * 100.0
 
     # All pressure taps
     pressures = [float(p) for p in parts[8:]]
 
     q_inf = 0.5 * rho * Vinf**2
-    Cp = [(p - Pinf) / q_inf for p in pressures]
+    Cp = [p / q_inf for p in pressures]
 
     return Cp, alpha
 

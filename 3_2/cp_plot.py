@@ -1,11 +1,13 @@
 import math
 import matplotlib.pyplot as plt
+import numpy as np
 
 # =========================
 # PATHS
 # =========================
-FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
-CHORDWISE_POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
+# FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
+FILE_PATH = r"raw_Group6_2d.txt"
+# CHORDWISE_POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
 
 Vinf = 18.22  # m/s
 
@@ -50,19 +52,21 @@ def calculate_cp(data, selected_run_nr):
     print(f"No data found for Run_nr {selected_run_nr}")
     return None, None
 
-def plot_cp_profile(positions, C_p, alpha):
+def plot_cp_profile(C_p, alpha):
     """Plot Cp distribution (upper/lower split based on array order)."""
-    midpoint = len(positions) // 2
+    midpoint = len(C_p) // 2
 
-    positions_upper = positions[:midpoint+1]
+    # positions_upper = positions[:midpoint+1]
     C_p_upper = C_p[:midpoint+1]
 
-    positions_lower = positions[midpoint+1:]
+    # positions_lower = positions[midpoint+1:]
     C_p_lower = C_p[midpoint+1:]
 
-    # Reverse lower surface for LE → TE
-    positions_lower = positions_lower[::-1]
-    C_p_lower = C_p_lower[::-1]
+    C_p_upper = np.array(C_p_upper)
+    C_p_lower = np.array(C_p_lower)
+
+    positions_upper = np.linspace(0, 1, C_p_upper.shape[0])
+    positions_lower = np.linspace(0, 1, C_p_lower.shape[0])
 
     plt.figure(figsize=(10, 6))
     plt.plot(positions_upper, C_p_upper, marker='o', linestyle='-', label='Upper surface')
@@ -79,7 +83,7 @@ def plot_cp_profile(positions, C_p, alpha):
 
 def main():
     data = load_data(FILE_PATH)
-    chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
+    # chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
 
     # Choose which run to plot (Run_nr is first column in file)
     selected_run_nr = 1
@@ -89,13 +93,7 @@ def main():
     if C_p is None:
         return
 
-    # Safety check: lengths must match
-    if len(chordwise_positions) != len(C_p):
-        print(f"Length mismatch: positions={len(chordwise_positions)} vs Cp={len(C_p)}")
-        print("Fix positions_p.txt to have exactly 49 lines (one number per line).")
-        return
-
-    plot_cp_profile(chordwise_positions, C_p, alpha)
+    plot_cp_profile(C_p, alpha)
 
 if __name__ == "__main__":
     main()

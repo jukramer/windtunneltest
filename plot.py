@@ -32,7 +32,7 @@ class DimensionError(Exception):
 
 
 # y values, raw applied stress values, failure stress, safety factor for applied stress
-def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
+def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
     # Check for correct parameter dimensions/types
     if yVals.shape != xVals.shape:
         raise DimensionError('xVals and yVals must have same length!')

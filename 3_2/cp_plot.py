@@ -2,9 +2,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-# =========================
-# PATHS
-# =========================
+
 # FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
 FILE_PATH = r"raw_Group6_2d.txt"
 # CHORDWISE_POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
@@ -28,8 +26,8 @@ def load_data(file_path):
         alpha = float(parts[2])  # angle of attack
         rho = float(parts[7])    # density
 
-        # Keep your friend's slice: 49 taps
-        pressures = [float(p) for p in parts[8:57]]  # 49 values
+        
+        pressures = [float(p) for p in parts[8:57]] 
 
         data.append((run_nr, alpha, rho, pressures))
 
@@ -97,3 +95,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#hello

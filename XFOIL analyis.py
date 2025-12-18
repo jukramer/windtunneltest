@@ -92,7 +92,7 @@ CM_array = np.array([CM])
 # plt.show()
 plotFailureMargin(alpha_array, Cl_array, (1, 1), ('Lift curve'), ('',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_l$',))
 
-plotFailureMargin(CD_array, Cl_array, (1, 1), ('Drag polar'), ('',), ('$C_l$',), ('$C_d$',))
+plotFailureMargin(CD_array, Cl_array, (1, 1), ('Drag polar'), ('',), ('$C_d$',), ('$C_l$',))
 
 plotFailureMargin(alpha_array, CM_array, (1, 1), ('Pitching moment curve'), ('',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_m$',))
 #plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at different pressure gauge locations'), (rf'$\alpha$ = {alpha_string}{chr(176)}',), ("pressure gauge locations [mm]",), ("velocity [$m s^{-1}$]",))

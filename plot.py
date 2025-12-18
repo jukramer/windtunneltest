@@ -84,7 +84,7 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
         ax.set_title(subTitles[i])    
         ax.grid()
                 
-    fig.suptitle(figTitle)
+    fig.suptitle(figTitle, y = 1.02)
     plt.show()
     
 

@@ -26,11 +26,12 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
         raise DimensionError('dimSubPlots must be a tuple = (nRows, nCols)!')
             
     # Default values
+    if xVals.ndim == 1:
+        xVals = np.array([xVals])
+        yVals = np.array([yVals])
     nSubPlots = xVals.shape[0]
-    print(nSubPlots)
     if len(colors) != nSubPlots:
         colors = nSubPlots*('blue',)
-        print(colors)
         print('Warning: Please specify the right amount of colors (1 per subplot). Defaulting to blue.')
     if len(subTitles) != nSubPlots:
         subTitles = nSubPlots*('',)

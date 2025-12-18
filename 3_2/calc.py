@@ -21,7 +21,6 @@ class Calc:
         plt.plot(xVals[5:-5], dydxLower)
         plt.show()
         
-        
         alpha = np.deg2rad(alpha)
         c = np.max(xVals)
         qInf = 0.5*rho*VInf**2

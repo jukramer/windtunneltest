@@ -93,7 +93,7 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
     yArrays = [np.array(yVals[i]) for i in range(yVals.shape[0])]
         
     # Plotting
-    fig, axs = plt.subplots(*dimSubplots)
+    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True)
     try:
         if isinstance(axs[0,:], np.ndarray):
             axs = axs.ravel()
@@ -115,12 +115,9 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
         ax.set_title(subTitles[i], fontsize = 28)    
         ax.grid()
                 
-    fig.tight_layout()
     fig.suptitle(figTitle, weight='bold')
     plt.legend()
     plt.show()
-
-
 
 
 y_loc_inter_array = np.array([y_loc_inter_array])

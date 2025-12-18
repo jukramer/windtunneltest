@@ -82,16 +82,16 @@ CM = [-0.0462, -0.0482, -0.0482, -0.0472, -0.0453, -0.0319, -0.0344, -0.0421, -0
 Top_Xtr = [0.9548, 0.9445, 0.9271, 0.9097, 0.8928, 0.8585, 0.8452, 0.8295, 0.7943, 0.7738, 0.7531, 0.7313, 0.7086, 0.6836, 0.6575, 0.6277, 0.5940, 0.5519, 0.4911, 0.4188, 0.3301, 0.2189, 0.1032, 0.0277, 0.0158, 0.0132, 0.0106, 0.0091, 0.0085, 0.0083, 0.0083, 0.0083, 0.0084, 0.0085, 0.0087, 0.0092, 0.0119]
 Bot_Xtr = [0.0198, 0.0173, 0.0181, 0.0244, 0.3718, 0.9108, 0.9432, 0.9652, 0.9992, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000]
 
-alpha_array = np.array(alpha)
-Cl_array = np.array(CL)
-CD_array = np.array(CD)
-CM_array = np.array(CM)
+alpha_array = np.array([alpha])
+Cl_array = np.array([CL])
+CD_array = np.array([CD])
+CM_array = np.array([CM])
 
 # plt.plot(alpha_array, Cl_array)
 # plt.show()
-plotFailureMargin(alpha_array, Cl_array, (1, 1), ('Lift curve'), ('test',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_l$',))
+plotFailureMargin(alpha_array, Cl_array, (1, 1), ('Lift curve'), ('',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_l$',))
 
-plotFailureMargin(Cl_array, CD_array, (1, 1), ('Drag polar'), ('test',), ('$C_l$',), ('$C_d$',))
+plotFailureMargin(CD_array, Cl_array, (1, 1), ('Drag polar'), ('',), ('$C_l$',), ('$C_d$',))
 
-plotFailureMargin(alpha_array, CM_array, (1, 1), ('Pitching moment curve'), ('test',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_m$',))
+plotFailureMargin(alpha_array, CM_array, (1, 1), ('Pitching moment curve'), ('',), (rf'Angle of attack $\alpha$ [deg]',), ('$C_m$',))
 #plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at different pressure gauge locations'), (rf'$\alpha$ = {alpha_string}{chr(176)}',), ("pressure gauge locations [mm]",), ("velocity [$m s^{-1}$]",))

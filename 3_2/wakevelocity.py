@@ -103,7 +103,7 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
     for i, ax in enumerate(axs):
         # Handle extra plots
         try:
-            ax.plot(xArrays[i], yArrays[i], color=colors[i])
+            ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
             ax.legend('wake velocity', 'freestream velocity')
             ax.axhline(18, color='red') # <- replace 20 with the freestream velocity
         except IndexError:

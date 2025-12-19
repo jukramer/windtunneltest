@@ -53,32 +53,32 @@ if __name__ == '__main__':
         xcpVals.append(xcp)
         alphaVals.append(alpha)
         
-    # #cl-a plot   
-    # plotXVals = np.array([alphaVals, cdPressVals])
-    # plotYVals = np.array([clVals, clVals])    
+    #cl-a plot   
+    plotXVals = np.array([alphaVals, cdPressVals])
+    plotYVals = np.array([clVals, clVals])    
         
-    # plot(plotXVals, 
-    #      plotYVals,
-    #      (1,2),
-    #      'Aerodynamic Coefficient Plots',
-    #     #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
-    #      ('Lift Curve', 'Pressure Drag Polar'),
-    #      (r'Angle of Attack  $[^{\circ{}}]$',r'Drag Coefficient  $[-]$'),
-    #      (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
-    #      ('blue','red'))
+    plot(plotXVals, 
+         plotYVals,
+         (1,2),
+         'Aerodynamic Coefficient Plots',
+        #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
+         ('Lift Curve', 'Pressure Drag Polar'),
+         (r'Angle of Attack  $[^{\circ{}}]$',r'Drag Coefficient  $[-]$'),
+         (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
+         ('blue','red'))
     
-    # # cm-a plot
-    # plotXVals = np.array([alphaVals])
-    # plotYVals = np.array([cmVals]) 
+    # cm-a plot
+    plotXVals = np.array([alphaVals])
+    plotYVals = np.array([cmVals]) 
     
-    # plot(plotXVals, 
-    #      plotYVals,
-    #      (1,1),
-    #      'Moment Coefficient Plot',
-    #      (r'',),
-    #      (r'Angle of Attack  $[^{\circ{}}]$',),
-    #      (r'Leading Edge Moment Coefficient  $[-]$',),
-    #      ('purple',))
+    plot(plotXVals, 
+         plotYVals,
+         (1,1),
+         'Moment Coefficient Plot',
+         (r'',),
+         (r'Angle of Attack  $[^{\circ{}}]$',),
+         (r'Leading Edge Moment Coefficient  $[-]$',),
+         ('purple',))
     
     # xcp plot
     plotXVals = np.array([alphaVals])
@@ -94,9 +94,10 @@ if __name__ == '__main__':
     #      ('green',))
     
     # cd-wake plot
-    plotXVals = np.array([cdWakeVals, cdPressVals])
-    plotYVals = np.array([clVals, clVals]) 
+#     plotXVals = np.array([cdWakeVals, cdPressVals])
+#     plotYVals = np.array([clVals, clVals]) 
     # print(cdWakeVals)
+    print('i love github')
     plot(plotXVals, 
          plotYVals,
          (1,2),

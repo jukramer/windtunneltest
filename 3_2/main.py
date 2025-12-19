@@ -96,6 +96,7 @@ if __name__ == '__main__':
 #     plotXVals = np.array([cdWakeVals, cdPressVals])
 #     plotYVals = np.array([clVals, clVals]) 
     # print(cdWakeVals)
+    print('i love github')
     plot(plotXVals, 
          plotYVals,
          (1,2),

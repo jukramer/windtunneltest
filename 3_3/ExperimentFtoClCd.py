@@ -27,8 +27,8 @@ plt.figure(figsize=(12, 5))
 
 # CL vs alpha
 plt.subplot(1, 2, 1)
-plt.plot(alpha_up, CL_up, color="blue", marker=".", label= "Increasing angle of attack")
-plt.plot(alpha_down, CL_down, color="red", marker=".", label= "Decreasing angle of attack")
+plt.plot(alpha_up, CL_up, color="red", marker=".", label= "Increasing angle of attack")
+plt.plot(alpha_down, CL_down, color="blue", marker=".", label= "Decreasing angle of attack")
 plt.xlabel("Alpha (deg)")
 plt.ylabel("CL")
 plt.title("Experimental CL vs Alpha")

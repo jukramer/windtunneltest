@@ -3,6 +3,12 @@ import math
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 import matplotlib as mpl
+from pathlib import Path
+import scipy as sp
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+ROW_NUM = 3
 
 mpl.rcParams.update({
     'axes.labelsize': 20,   # x/y label size
@@ -10,56 +16,72 @@ mpl.rcParams.update({
     'xtick.labelsize': 18,  # x-axis numbers
     'ytick.labelsize': 18,  # y-axis numbers
     'figure.titlesize': 28, #figure title size
+    'legend.fontsize': 20
 })
-row_nr = 3
+
 
 class DimensionError(Exception):
     pass
+
 
 def calcvelocity(p_static, p_total, rho):
     v = math.sqrt(2 * (p_total - p_static) / rho)
     return v
 
-with open('Data/raw_Group6_2d.txt', 'r') as fin:
 
-    readline = fin.readlines()
+def findWakeVals(rowNum):
+    row_nr = rowNum
 
-    line = readline[row_nr + 1]
-    entries = line.split()
+    with open(BASE_DIR/'Data'/'raw_Group6_2d.txt', 'r') as fin:
 
-    print(entries[2])
-    alpha = float(entries[2].strip().replace('−', '-'))
-    alpha_string = str(alpha)
+        readline = fin.readlines()
 
-    rho = float(entries[7])
-    p_static = np.array(entries[105:117], dtype= float)
-    p_total = np.array(entries[63:99], dtype= float)
+        line = readline[row_nr + 1]
+        entries = line.split()
+
+        # print(entries[2])
+        alpha = float(entries[2].strip().replace('−', '-'))
+        alpha_string = str(alpha)
+
+        rho = float(entries[7])
+        p_static = np.array(entries[105:117], dtype= float)
+        p_total = np.array(entries[63:99], dtype= float)
+        # plt.plot(np.linspace(0, 100, p_static.shape[0]), p_static)
+        # plt.plot(np.linspace(0, 100, p_total.shape[0]), p_total)
+        # plt.show()
+        
+        #print(len(p_total))
+        y_loc_static = [43.5 ,55.5 ,67.5 ,79.5 ,91.5 ,103.5 ,115.5 ,127.5 ,139.5 ,151.5 ,163.5 ,175.5]
+        y_loc_total = [0, 12, 21, 27, 33, 39, 45, 51, 57, 63, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 99, 102, 105, 108, 111, 114, 117, 120, 123, 126, 129, 132, 135, 138, 141, 144, 147, 150, 156, 162, 168, 174, 180, 186, 195, 207, 219]
+
+        y_loc_interpolation = y_loc_total[6:-5]
+        
+        p_static_interpolated = np.interp(y_loc_interpolation, y_loc_static, p_static)
+        pStatic = sp.interpolate.CubicSpline(y_loc_static, p_static)
+        yVals = np.arange(np.min(y_loc_static), np.max(y_loc_static), 0.01)
+        # plt.plot(yVals, pStatic(yVals))
+        # plt.show()
+
+        #find velocity from total pressure/interpolated static pressure values
+
+        velocity_list = []
+        i = 0
+        for i in range(len(y_loc_interpolation)):
+            velocity_list.append(calcvelocity(p_static_interpolated[i], p_total[i], rho))
+        
+        velocity_array = np.array(velocity_list)
+        #print(velocity_array)
+
+        v_inf = np.sqrt(2 * (float(entries[104]) * float(entries [118])) / rho)                           #entries[104] corresponds to P97 and entries[118] to P110, the static and total pressures in the freestream respectively 
+        j = 0
+        v_inf_list = []
+        for j in range(len(y_loc_interpolation)):
+            v_inf_list.append(v_inf)
+        y_loc_inter_array = np.array(y_loc_interpolation)
+        
+        
+    return y_loc_inter_array, velocity_array, p_static_interpolated, alpha_string
     
-    #print(len(p_total))
-    y_loc_static = [43.5 ,55.5 ,67.5 ,79.5 ,91.5 ,103.5 ,115.5 ,127.5 ,139.5 ,151.5 ,163.5 ,175.5]
-    y_loc_total = [0, 12, 21, 27, 33, 39, 45, 51, 57, 63, 69, 72, 75, 78, 81, 84, 87, 90, 93, 96, 99, 102, 105, 108, 111, 114, 117, 120, 123, 126, 129, 132, 135, 138, 141, 144, 147, 150, 156, 162, 168, 174, 180, 186, 195, 207, 219]
-
-    y_loc_interpolation = y_loc_total[6:-5]
-    
-    p_static_interpolated = np.interp(y_loc_interpolation, y_loc_static, p_static)
-
-    #find velocity from total pressure/interpolated static pressure values
-
-    velocity_list = []
-    i = 0
-    for i in range(len(y_loc_interpolation)):
-
-        velocity_list.append(calcvelocity(p_static_interpolated[i], p_total[i], rho))
-    
-    velocity_array = np.array(velocity_list)
-    #print(velocity_array)
-
-    v_inf = np.sqrt(2 * (float(entries[104]) * float(entries [118])) / rho)                           #entries[104] corresponds to P97 and entries[118] to P110, the static and total pressures in the freestream respectively 
-    j = 0
-    v_inf_list = []
-    for j in range(len(y_loc_interpolation)):
-        v_inf_list.append(v_inf)
-    y_loc_inter_array = np.array(y_loc_interpolation)
 
 def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
     # Check for correct parameter dimensions/types
@@ -120,10 +142,15 @@ def plotFailureMargin(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTit
     plt.show()
 
 
-y_loc_inter_array = np.array([y_loc_inter_array])
+if __name__ == '__main__':
+    y_loc_inter_array, velocity_array, alpha_string = findWakeVals(ROW_NUM)
+    
+    y_loc_inter_array = np.array([y_loc_inter_array])
+    velocity_array = np.array([velocity_array])
+    
+    plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at different pressure gauge locations'), (rf'$\alpha$ = {alpha_string}{chr(176)}',), ("pressure gauge locations [mm]",), ("velocity [$m s^{-1}$]",))
 
-velocity_array = np.array([velocity_array])
-plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at different pressure gauge locations'), (rf'$\alpha$ = {alpha_string}{chr(176)}',), ("pressure gauge locations [mm]",), ("velocity [$m s^{-1}$]",))
+
 #plotFig(self, y_loc_interpolation, velocity_array)
 # plt.plot(y_loc_interpolation, velocity_array, marker='o', color='b', label='wake velocity')
 # plt.title(f'Wake velocity at angle of attack {alpha} {chr(176)}')
@@ -131,6 +158,3 @@ plotFailureMargin(y_loc_inter_array, velocity_array, (1,1), ('Wake velocity at d
 # plt.ylabel("Measure velocity [m s^-1]")
 # plt.legend()
 # plt.show()
-
-
-  

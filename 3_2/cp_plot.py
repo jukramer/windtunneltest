@@ -1,12 +1,14 @@
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
 
 # =========================
 # PATHS
 # =========================
 # FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
-FILE_PATH = r"raw_Group6_2d.txt"
+BASE_DIR = Path(__file__).resolve().parent.parent
+FILE_PATH = BASE_DIR/'Data'/'raw_Group6_2d.txt'
 # CHORDWISE_POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
 
 Vinf = 18.22  # m/s
@@ -80,13 +82,46 @@ def plot_cp_profile(C_p, alpha):
     plt.legend()
     plt.tight_layout()
     plt.show()
+    
+def calc_cp_profile(C_p, alpha):
+    """Plot Cp distribution (upper/lower split based on array order)."""
+    midpoint = len(C_p) // 2
 
-def main():
+    # positions_upper = positions[:midpoint+1]
+    C_p_upper = C_p[:midpoint+1]
+
+    # positions_lower = positions[midpoint+1:]
+    C_p_lower = C_p[midpoint+1:]
+
+    C_p_upper = np.array(C_p_upper)
+    C_p_lower = np.array(C_p_lower)
+
+    positions_upper = np.linspace(0, 1, C_p_upper.shape[0])
+    positions_lower = np.linspace(0, 1, C_p_lower.shape[0])
+    
+    return C_p_upper, C_p_lower, positions_upper, positions_lower, alpha
+
+
+def findCP(runNum):
     data = load_data(FILE_PATH)
     # chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
 
     # Choose which run to plot (Run_nr is first column in file)
-    selected_run_nr = 1
+    selected_run_nr = runNum
+
+    C_p, alpha = calculate_cp(data, selected_run_nr)
+
+    if C_p is None:
+        return
+
+    return calc_cp_profile(C_p, alpha)
+
+def plotCP(runNum):
+    data = load_data(FILE_PATH)
+    # chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
+
+    # Choose which run to plot (Run_nr is first column in file)
+    selected_run_nr = runNum
 
     C_p, alpha = calculate_cp(data, selected_run_nr)
 
@@ -94,6 +129,22 @@ def main():
         return
 
     plot_cp_profile(C_p, alpha)
+
+
+def main():
+    data = load_data(FILE_PATH)
+    # chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
+
+    # Choose which run to plot (Run_nr is first column in file)
+    selected_run_nr = 8
+
+    C_p, alpha = calculate_cp(data, selected_run_nr)
+
+    if C_p is None:
+        return
+
+    plot_cp_profile(C_p, alpha)
+
 
 if __name__ == "__main__":
     main()

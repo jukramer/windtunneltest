@@ -39,7 +39,7 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
         raise TypeError('dimSubplots, titles must be tuples!')
     if not len(dimSubplots) == 2:
         raise DimensionError('dimSubPlots must be a tuple = (nRows, nCols)!')
-            
+    
     # Default values
     nSubPlots = xVals.shape[0]
     print(nSubPlots)
@@ -64,21 +64,33 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
         
     # Plotting
     fig, axs = plt.subplots(*dimSubplots, constrained_layout=True)
+    print(axs)
     try:
         if isinstance(axs[0,:], np.ndarray):
             axs = axs.ravel()
     except TypeError:
         axs = np.array([axs])
+    except IndexError:
+        pass
     
     for i, ax in enumerate(axs):
         # Handle extra plots
         try:
-            ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
-            ax.legend('wake velocity', 'freestream velocity')
-            ax.axhline(18, color='red') # <- replace 20 with the freestream velocity
+            if i == 1:
+                ax.plot(xArrays[i], yArrays[i], color='red', marker='x', label='$c_{d}$ from Pressure Distribution')
+                ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x', label='$c_{d}$ from Wake Rake')
+                ax.legend(fontsize=26)
+            else:    
+                ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
+                
+            # ax.legend('wake velocity', 'freestream velocity')
+            # ax.axhline(18, color='red') # <- replace 20 with the freestream velocity
         except IndexError:
-            ax.set_axis_off()
+            fig.delaxes(ax)
             continue
+        
+        # if i == 0:        
+        #     ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
         
         ax.set_xlabel(xLabels[i])    
         ax.set_ylabel(yLabels[i])    

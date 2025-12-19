@@ -3,9 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 
-# =========================
-# PATHS
-# =========================
+
 # FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
 BASE_DIR = Path(__file__).resolve().parent.parent
 FILE_PATH = BASE_DIR/'Data'/'raw_Group6_2d.txt'
@@ -30,8 +28,8 @@ def load_data(file_path):
         alpha = float(parts[2])  # angle of attack
         rho = float(parts[7])    # density
 
-        # Keep your friend's slice: 49 taps
-        pressures = [float(p) for p in parts[8:57]]  # 49 values
+        
+        pressures = [float(p) for p in parts[8:57]] 
 
         data.append((run_nr, alpha, rho, pressures))
 
@@ -148,3 +146,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#hello

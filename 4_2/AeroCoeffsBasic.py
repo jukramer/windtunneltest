@@ -9,7 +9,7 @@ files = {"LLT": "../Data/LLT_polars_T1.txt",
 
 results = {}
 
-#all lists for the separate files
+#all lists for the separate simulation files
 for m, path in files.items():
 
     read = pd.read_csv( path, delim_whitespace = True, skiprows = range(0, 6))
@@ -28,6 +28,23 @@ for m, path in files.items():
         TCD_lst.append(float(TCD[i]))
 
     results[m] = {"alpha": alpha_lst,"CL": CL_lst,"TCD": TCD_lst}
+
+#Experimetnal results
+df = pd.read_csv("../Data/EXP_measure_wing_up.txt", delim_whitespace=True,skiprows=[1])
+
+V = 18
+S = 0.4169 * 0.16
+
+rho_E = df["Rho"]
+Fx_E = df["Fx"]
+Fy_E = df["Fy"]
+CL_E = 2 * Fy_E / (rho_E * V ** 2 * S)
+CD_E = 2 * Fx_E / (rho_E * V ** 2 * S)
+CD_E = 2 * Fx_E / (rho_E * V ** 2 * S)
+
+
+
+
 
 #plot it all
 plt.figure(figsize=(12, 6))

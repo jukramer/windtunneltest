@@ -63,7 +63,7 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     yArrays = [np.array(yVals[i]) for i in range(yVals.shape[0])]
         
     # Plotting
-    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True)
+    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10, 10))
     print(axs)
     try:
         if isinstance(axs[0,:], np.ndarray):
@@ -76,12 +76,12 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     for i, ax in enumerate(axs):
         # Handle extra plots
         try:
-            # if i == 1:
-            #     ax.plot(xArrays[i], yArrays[i], color='red', marker='x', label='$c_{d}$ from Pressure Distribution')
-            #     ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x', label='$c_{d}$ from Wake Rake')
-            #     ax.legend(fontsize=26)
-            # else:    
-            ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
+            if i == 0:
+                ax.plot(xArrays[i], yArrays[i], color='red', marker='x', label='$c_{d}$ from Pressure Distribution')
+                ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x', label='$c_{d}$ from Wake Rake')
+                ax.legend(fontsize=26)
+            else:    
+                ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
                 
             # ax.legend('wake velocity', 'freestream velocity')
             # ax.axhline(18, color='red') # <- replace 20 with the freestream velocity
@@ -99,8 +99,8 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
                 
     fig.suptitle(figTitle, weight='bold')
     plt.legend()
+    plt.savefig(rf'Plots\{figTitle}.png')
     plt.show()
-    
 
 if __name__ == '__main__':
     # For testing

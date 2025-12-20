@@ -50,12 +50,12 @@ def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str=
     if len(subTitles) != nSubPlots:
         subTitles = nSubPlots*('',)
         print('Warning: Please specify the right amount of subtitles (1 per subplot). Defaulting to no titles.')
-    if len(xLabels) != nSubPlots:
-        xLabels = nSubPlots * ('',)
-        print('Warning: Please specify the right amount of x axis labels (1 per subplot). Defaulting to no titles.')   
-    if len(yLabels) != nSubPlots:
-        yLabels = nSubPlots * ('',)
-        print('Warning: Please specify the right amount of y axis labels (1 per subplot). Defaulting to no titles.')       
+    # if len(xLabels) != nSubPlots:
+    #     xLabels = nSubPlots * ('',)
+    #     print('Warning: Please specify the right amount of x axis labels (1 per subplot). Defaulting to no titles.')   
+    # if len(yLabels) != nSubPlots:
+    #     yLabels = nSubPlots * ('',)
+    #     print('Warning: Please specify the right amount of y axis labels (1 per subplot). Defaulting to no titles.')       
         
     # To allow for inhomogeneous y/sigma arrays (plots with different # of data points),
     # numpy arrays are unpacked into python lists
@@ -63,7 +63,7 @@ def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str=
     yArrays = [np.array(yVals[i]) for i in range(yVals.shape[0])]
         
     # Plotting
-    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True)
+    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10,10))
     print(axs)
     try:
         if isinstance(axs[0,:], np.ndarray):
@@ -84,22 +84,23 @@ def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str=
                 # ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
                 break
                 
-            ax.legend('wake velocity', 'freestream velocity')
+            ax.legend()
 
         except IndexError:
             fig.delaxes(ax)
             continue
         
-        if i == 0:        
-            ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
+        # if i == 0:        
+        #     ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
         
         ax.set_xlabel(xLabels[i])    
         ax.set_ylabel(yLabels[i])    
-        ax.set_title(subTitles[i], fontsize = 28)    
+        # ax.set_title(subTitles[i], fontsize = 28)    
         ax.grid()
                 
     fig.suptitle(figTitle, weight='bold')
     plt.legend()
+    plt.savefig(rf'Plots\{figTitle}.png')
     plt.show()
     
 

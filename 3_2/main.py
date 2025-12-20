@@ -62,19 +62,19 @@ if __name__ == '__main__':
         cmc4Vals.append(cmc4)
         
     #cl-a plot   
-    plotXVals = np.array([alphaVals, cdPressVals])
-    plotYVals = np.array([clVals, clVals])    
+    # plotXVals = np.array([alphaVals, cdPressVals])
+    # plotYVals = np.array([clVals, clVals])    
     
 
-    plot(plotXVals, 
-         plotYVals,
-         (1,2),
-         'Aerodynamic Coefficient Plots',
-        #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
-         ('Lift Curve', 'Pressure Drag Polar'),
-         (r'Angle of Attack  $[^{\circ{}}]$',r'Drag Coefficient  $[-]$'),
-         (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
-         ('blue','red'))
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,2),
+    #      'Aerodynamic Coefficient Plots',
+    #     #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
+    #      ('Lift Curve', 'Pressure Drag Polar'),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',r'Drag Coefficient  $[-]$'),
+    #      (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
+    #      ('blue','red'))
     
     # # corrected CL
     # plotXVals = np.array([alphaVals, cd_cVals])
@@ -90,17 +90,29 @@ if __name__ == '__main__':
     #      ('blue','red'))
     
     # cm-a plot
-    plotXVals = np.array([alphaVals, alphaVals])
-    plotYVals = np.array([cmVals, cmc4Vals]) 
+    # plotXVals = np.array([alphaVals])
+    # plotYVals = np.array([cmVals]) 
     
-    plot(plotXVals, 
-         plotYVals,
-         (1,2),
-         'Moment Coefficient Plot',
-         (r'',),
-         (r'Angle of Attack  $[^{\circ{}}]$', r'Angle of Attack  $[^{\circ{}}]$'),
-         (r'Leading Edge Moment Coefficient  $[-]$', r'Quarter-chord Moment Coefficient  $[-]$',),
-         ('purple', "#FF0077"))
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,1),
+    #      'Leading Edge Moment Coefficient Plot',
+    #      (r'',),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',),
+    #      (r'Leading Edge Moment Coefficient  $[-]$',),
+    #      ('purple',))
+    
+    # plotXVals = np.array([alphaVals])
+    # plotYVals = np.array([cmc4Vals]) 
+    
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,1),
+    #      'Quarter-chord Moment Coefficient Plot',
+    #      (r'',),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',),
+    #      (r'Quarter-chord Moment Coefficient  $[-]$',),
+    #      ("#FF0077",))
     
     # # xcp plot
     # plotXVals = np.array([alphaVals])
@@ -115,18 +127,30 @@ if __name__ == '__main__':
     #      (r'Chordwise Center of Pressure Location  $[c]$',),
     #      ('green',))
     
-    # cd-wake plot
-#     plotXVals = np.array([cdWakeVals, cdPressVals])
-#     plotYVals = np.array([clVals, clVals]) 
+    # cd-wake plots
+    # plotXVals = np.array([cdWakeVals])
+    # plotYVals = np.array([cl_cVals]) 
     # print(cdWakeVals)
     # plot(plotXVals, 
     #      plotYVals,
-    #      (1,2),
-    #      'Variation of Drag with Lift Coefficient',
-    #      (r'Drag Polar from Wake Rake Data', 'Wake Rake and Pressure Drag Polars'),
-    #      (r'Drag Coefficient  $[-]$', r'Drag Coefficient  $[-]$',),
-    #      (r'Lift Coefficient  $[-]$', r'Lift Coefficient  $[-]$',),
-    #      ('orange', 'orange'))
+    #      (1,1),
+    #      'Drag Polar from Wake Rake Data',
+    #      ('',),
+    #      (r'Drag Coefficient  $[-]$',),
+    #      (r'Lift Coefficient  $[-]$',),
+    #      ('orange',))
+    
+    plotXVals = np.array([cdWakeVals, cdPressVals])
+    plotYVals = np.array([clVals, clVals]) 
+    print(cdWakeVals)
+    plotPaula(plotXVals, 
+         plotYVals,
+         (1,1),
+         'Drag Polars Superimposed',
+         (r'$c_{d}$ from Wake Rake Data', r'$c_{d}$ from Surface Pressure Data'),
+         (r'Drag Coefficient  $[-]$',),
+         (r'Lift Coefficient  $[-]$',),
+         ('orange', 'red'))
     
     # PLOTTING TWO GRAPHS IN 1
     

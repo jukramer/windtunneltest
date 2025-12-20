@@ -136,11 +136,11 @@ if __name__ == '__main__':
     plotPaula(plotXVals, 
               plotYVals,
               (1,1),
-              'Variation of Drag with Lift Coefficient',
-              (r'',),
+              'Plot Title',
+              ('Uncorrected $c_{l} values', 'Corrected $c_{l} values'),
               (r'Angle of Attack  $[^{\circ{}}]$',),
               (r'Lift Coefficient  $[-]$',),
-              ('orange', 'orange')) # <- define the two colors you want for your plots
+              ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
             
     
     

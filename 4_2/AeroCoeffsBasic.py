@@ -28,7 +28,7 @@ for m, path in files.items():
         alpha_lst.append(float(alpha[i]))
         CL_lst.append(float(CL[i]))
         # TCD = float(PCD[i])+2*float(ICD[i])
-        TCD_lst.append(float(TCD[i])+0.015)
+        TCD_lst.append(float(TCD[i])+0.008)
 
     results[m] = {"alpha": alpha_lst,"CL": CL_lst,"TCD": TCD_lst}
 
@@ -62,9 +62,9 @@ for m, data in results.items():
     plt.plot(data["alpha"], data["CL"], marker = mark[m],label=m)
 
 plt.plot(alpha_up, CL_up, marker = "o",label="Experimental Results")
-plt.xlabel('Alpha (degrees)')
-plt.ylabel('CL')
-plt.title('CL vs Alpha')
+plt.xlabel(r'$\alpha$')
+plt.ylabel(r'$C_L$')
+# plt.title('CL vs Alpha')
 plt.grid(True)
 plt.legend()
 
@@ -74,13 +74,14 @@ for m, data in results.items():
     plt.plot(data["TCD"], data["CL"],marker = mark[m],label=m)
 
 plt.plot(CD_up, CL_up, marker = "o",label="Experimental Results")
-plt.xlabel('Total CD')
-plt.ylabel('CL')
-plt.title('CL vs Total CD')
+plt.xlabel(r'$C_D$')
+plt.ylabel(r'$C_L$')
+# plt.title('CL vs Total CD')
 plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
+plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\NumericalVsExperiment3D.pdf', bbox_inches='tight')
 plt.show()
 
 

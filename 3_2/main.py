@@ -8,6 +8,7 @@ from calc import *
 from cp_plot import findCP, plotCP
 from wakevelocity import findWakeVals
 from plot import *
+from plotPaula import *
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
@@ -124,7 +125,23 @@ if __name__ == '__main__':
          (r'Drag Coefficient  $[-]$', r'Drag Coefficient  $[-]$',),
          (r'Lift Coefficient  $[-]$', r'Lift Coefficient  $[-]$',),
          ('orange', 'orange'))
-        
+    
+    # PLOTTING TWO GRAPHS IN 1
+    
+    clCorrectedVals = np.array([]) # Placeholder
+    
+    plotXVals = np.array([alphaVals, alphaVals])
+    plotYVals = np.array([clVals, clCorrectedVals])
+    
+    plotPaula(plotXVals, 
+              plotYVals,
+              (1,1),
+              'Variation of Drag with Lift Coefficient',
+              (r'',),
+              (r'Angle of Attack  $[^{\circ{}}]$',),
+              (r'Lift Coefficient  $[-]$',),
+              ('orange', 'orange')) # <- define the two colors you want for your plots
+            
     
     
     

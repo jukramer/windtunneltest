@@ -47,7 +47,7 @@ plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
-plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\ExperimentEval3D.pdf', bbox_inches='tight')
+# plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\ExperimentEval3D.pdf', bbox_inches='tight')
 plt.show()
 
 

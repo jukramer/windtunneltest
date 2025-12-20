@@ -60,7 +60,7 @@ class Calc:
         # Corrected coefficients
         cl_c = cl*(1-(size_factor/a)-((1+a)/(a)**(3/2))*t_f*size_factor-((1+a)/a)*wake_factor*cdPressure)   # true lift coeff
         cd_c = cdPressure*(1-((1+a)/a**(3/2))*size_factor*t_f-((1+a)/a)*wake_factor*cdPressure)     # true drag Cd
-        cm_c = cm*(1-((3-0.6*M**2)/a**(3/2))*size_factor*t_f-((1+a)/a)*wake_factor*cdPressure)+(size_factor/4*a)*cl
+        cm_c = cmc4*(1-((3-0.6*M**2)/a**(3/2))*size_factor*t_f-((1+a)/a)*wake_factor*cdPressure)+(size_factor/4*a)*cl
         
         return cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c, cmc4
         

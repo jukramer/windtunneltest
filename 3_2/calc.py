@@ -47,9 +47,11 @@ class Calc:
         # plt.legend()
         # plt.show()
         
-        # Lift and Drag
+        # Lift and Pressure Drag
         cl = cn*np.cos(alpha) - ca*np.sin(alpha)
         cdPressure = cn*np.sin(alpha) + ca*np.cos(alpha)
+        
+        # Wake Drag
         DWake = rho*sp.integrate.simpson(V1Vals*(VInfArray - V1Vals), y1Vals/1000) + sp.integrate.simpson(p1Vals, y1Vals/1000)
         print(rho*sp.integrate.simpson(V1Vals*(VInfArray - V1Vals), y1Vals/1000), sp.integrate.simpson(p1Vals, y1Vals/1000))
 

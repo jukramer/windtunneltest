@@ -100,7 +100,7 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     fig.suptitle(figTitle, weight='bold')
     plt.legend()
     plt.show()
-
+    
 
 if __name__ == '__main__':
     # For testing

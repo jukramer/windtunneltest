@@ -156,20 +156,34 @@ if __name__ == '__main__':
     
     # PLOTTING TWO GRAPHS IN 1
     
-    # CORRECTED CL VS CL
+    # # CORRECTED CL VS CL
     
-    plotXVals = np.array([alphaVals, alphaVals])
-    plotYVals = np.array([clVals, cl_cVals])
+    # plotXVals = np.array([alphaVals, alphaVals])
+    # plotYVals = np.array([clVals, cl_cVals])
     
-    plotPaula(plotXVals, 
-              plotYVals,
-              (1,1),
-              'Measured Lift vs Corrected Lift ',
-              ('Uncorrected $c_{l} values', 'Corrected $c_{l} values'),
-              (r'Angle of Attack  $[^{\circ{}}]$',),
-              (r'Lift Coefficient  $[-]$',),
-              ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
+    # plotPaula(plotXVals, 
+    #           plotYVals,
+    #           (1,1),
+    #           '',
+    #           ('Uncorrected values', 'Corrected values'),
+    #           (r'Angle of Attack  $[^{\circ{}}]$',),
+    #           (r'Lift Coefficient  $[-]$',),
+    #           ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
     
+    # # CORRECTED CD VS CD
+    
+    # plotXVals = np.array([alphaVals, alphaVals])
+    # plotYVals = np.array([cdPressVals, cd_cVals])
+    
+    # plotPaula(plotXVals, 
+    #           plotYVals,
+    #           (1,1),
+    #           '',
+    #           ('Uncorrected values', 'Corrected values'),
+    #           (r'Angle of Attack  $[^{\circ{}}]$',),
+    #           (r'Drag Coefficient  $[-]$',),
+    #           ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
+
     # # CORRRECTED DRAG POLAR VS DRAG POLAR
     # plotXVals = np.array([cdPressVals, cd_cVals])
     # plotYVals = np.array([clVals, cl_cVals])
@@ -177,24 +191,24 @@ if __name__ == '__main__':
     # plotPaula(plotXVals, 
     #           plotYVals,
     #           (1,1),
-    #           'Measured Drag Polar vs Corrected Corrected Drag Polar ',
+    #           '',
     #           ('Measured values', 'Corrected values'),
     #           (r'Drag Coefficient  $[^{\circ{}}]$',),
     #           (r'Lift Coefficient  $[-]$',),
     #           ('blue', 'orange'))
     
-    # CORRECTIED CM VS CM 
-    plotXVals = np.array([alphaVals, alphaVals])
-    plotYVals = np.array([cmc4Vals, cm_cVals])
+    # # CORRECTIED CM VS CM 
+    # plotXVals = np.array([alphaVals, alphaVals])
+    # plotYVals = np.array([cmc4Vals, cm_cVals])
     
-    plotPaula(plotXVals, 
-              plotYVals,
-              (1,1),
-              'Measured Pitching moment vs Corrected Pitching moment ',
-              ('Measured values', 'Corrected values'),
-              (r'Angle of Attack  $[^{\circ{}}]$',),
-              (r'Moment Coefficient  $[-]$',),
-              ('blue', 'orange'))
+    # plotPaula(plotXVals, 
+    #           plotYVals,
+    #           (1,1),
+    #           '',
+    #           ('Measured values', 'Corrected values'),
+    #           (r'Angle of Attack  $[^{\circ{}}]$',),
+    #           (r'Moment Coefficient  $[-]$',),
+    #           ('blue', 'orange'))
             
     
     

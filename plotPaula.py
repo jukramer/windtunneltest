@@ -90,8 +90,8 @@ def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str=
             fig.delaxes(ax)
             continue
         
-        # if i == 0:        
-        #     ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
+        if i == 0:        
+            ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
         
         ax.set_xlabel(xLabels[i])    
         ax.set_ylabel(yLabels[i])    

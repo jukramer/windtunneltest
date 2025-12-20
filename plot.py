@@ -63,7 +63,7 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     yArrays = [np.array(yVals[i]) for i in range(yVals.shape[0])]
         
     # Plotting
-    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10, 10))
+    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10, 7))
     print(axs)
     try:
         if isinstance(axs[0,:], np.ndarray):
@@ -77,9 +77,9 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
         # Handle extra plots
         try:
             if i == 0:
-                ax.plot(xArrays[i], yArrays[i], color='red', marker='x', label='$c_{d}$ from Pressure Distribution')
-                ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x', label='$c_{d}$ from Wake Rake')
-                ax.legend(fontsize=26)
+                ax.plot(xArrays[i], yArrays[i], color='red', marker='x')
+                ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x')
+                # ax.legend(fontsize=26)
             else:    
                 ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
                 
@@ -89,8 +89,8 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
             fig.delaxes(ax)
             continue
         
-        # if i == 0:        
-        #     ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
+        if i == 0:        
+            ax.set_xticks(np.arange(np.floor(np.min(xArrays[i])), np.ceil(np.max(xArrays[i])), 2))
         
         ax.set_xlabel(xLabels[i])    
         ax.set_ylabel(yLabels[i])    

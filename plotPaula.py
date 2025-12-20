@@ -105,7 +105,7 @@ def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str=
 
 if __name__ == '__main__':
     # For testing
-    plot(np.array([[1,2,3], [1,2], [2,4,5,6,7]], dtype=object), 
+    plotPaula(np.array([[1,2,3], [1,2], [2,4,5,6,7]], dtype=object), 
                       np.array([[2,4,1], [3,5], [9,3,4,5,6]], dtype=object), 
                       (1,2),
                       'Test',

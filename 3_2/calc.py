@@ -33,26 +33,10 @@ class Calc:
         pInfArray = np.full_like(y1Vals, pInf)
         qInfArray = np.full_like(y1Vals, qInf)
         VInfArray = np.full_like(y1Vals, VInf)
-        # p1StaticVals = (p1Vals - 0.5*rho*V1Vals**2)*100
-        
-        # plt.plot(y1Vals, p1Vals)
-        # plt.plot(y1Vals, p1StaticVals)
-        # plt.plot(y1Vals, 0.5*rho*V1Vals**2)
-        # plt.show()
-                
-        # Pressure values
-        # pLowerVals = cpLowerVals * qInf + np.full_like(cpLowerVals, pInf) # Lower airfoil surface
-        # pUpperVals = cpUpperVals * qInf + np.full_like(cpLowerVals, pInf) # Upper airfoil surface
-       
+
         # Normal and Axial Force
         cn = sp.integrate.simpson(cpLowerVals, xValsLower) - sp.integrate.simpson(cpUpperVals, xValsUpper)
         ca = sp.integrate.simpson(cpLowerVals*dydxLower, xValsLower) - sp.integrate.simpson(cpUpperVals*dydxUpper, xValsUpper)
-        # plt.plot(xValsLower, cpLowerVals, label='cplower')
-        # plt.plot(xValsUpper, cpUpperVals, label='cpupper')
-        # plt.plot(xValsLower, cpLowerVals*dydxLower, label='cplowerdydx')
-        # plt.plot(xValsUpper, cpUpperVals*dydxUpper, label='cpupperdydx')
-        # plt.legend()
-        # plt.show()
         
         # Lift and Pressure Drag
         cl = cn*np.cos(alpha) - ca*np.sin(alpha)
@@ -62,9 +46,9 @@ class Calc:
         DWake = rho*sp.integrate.simpson(V1Vals*(VInfArray - V1Vals), y1Vals/1000) + sp.integrate.simpson(p1Vals, y1Vals/1000)
         print(rho*sp.integrate.simpson(V1Vals*(VInfArray - V1Vals), y1Vals/1000), sp.integrate.simpson(p1Vals, y1Vals/1000))
 
-
         # Leading Edge Moment
         cm = -(sp.integrate.simpson(cpLowerVals*xValsLower, xValsLower) - sp.integrate.simpson(cpUpperVals*xValsUpper, xValsUpper))
+        cmc4 = cm + 0.25*cn
         
         # Coefficients
         cdWake = DWake/(qInf*c)
@@ -78,7 +62,7 @@ class Calc:
         cd_c = cdPressure*(1-((1+a)/a**(3/2))*size_factor*t_f-((1+a)/a)*wake_factor*cdPressure)     # true drag Cd
         cm_c = cm*(1-((3-0.6*M**2)/a**(3/2))*size_factor*t_f-((1+a)/a)*wake_factor*cdPressure)+(size_factor/4*a)*cl
         
-        return cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c
+        return cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c, cmc4
         
     def loadAirfoil(self, filepath):
         airfoilPoints = np.genfromtxt(filepath, skip_header=1)

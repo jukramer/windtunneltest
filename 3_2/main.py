@@ -30,6 +30,7 @@ if __name__ == '__main__':
     cl_cVals = []
     cd_cVals = []
     cm_cVals = []
+    cmc4Vals = []
     
     calc = Calc(BASE_DIR/'Data'/'sd6060.dat.txt')
     
@@ -37,7 +38,7 @@ if __name__ == '__main__':
         cpUpper, cpLower, positionsUpper, positionsLower, alpha = findCP(run)
         y1Vals, V1Vals, p1Vals, _ = findWakeVals(run)
         
-        cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c = calc.calcAero(positionsUpper,
+        cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c, cmc4 = calc.calcAero(positionsUpper,
                                                         positionsLower,
                                                         cpLower,
                                                         cpUpper,
@@ -58,6 +59,7 @@ if __name__ == '__main__':
         cl_cVals.append(cl_c)
         cd_cVals.append(cd_c)
         cm_cVals.append(cm_c)
+        cmc4Vals.append(cmc4)
         
     #cl-a plot   
     plotXVals = np.array([alphaVals, cdPressVals])
@@ -74,35 +76,35 @@ if __name__ == '__main__':
          (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
          ('blue','red'))
     
-    # corrected CL
-    plotXVals = np.array([alphaVals, cd_cVals])
-    plotYVals = np.array([cl_cVals,clVals])
+    # # corrected CL
+    # plotXVals = np.array([alphaVals, cd_cVals])
+    # plotYVals = np.array([cl_cVals,clVals])
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,2),
+    #      'Corrected Aerodynamic Coefficient Plots',
+    #     #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
+    #      ('Corrected Lift Curve', 'Corrected Pressure Drag Polar'),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',r'Corrected Drag Coefficient  $[-]$'),
+    #      (r'Corrected Lift Coefficient $[-]$',r'Corrected Lift Coefficient  $[-]$'),
+    #      ('blue','red'))
+    
+    # cm-a plot
+    plotXVals = np.array([alphaVals, alphaVals])
+    plotYVals = np.array([cmVals, cmc4Vals]) 
+    
     plot(plotXVals, 
          plotYVals,
          (1,2),
-         'Corrected Aerodynamic Coefficient Plots',
-        #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
-         ('Corrected Lift Curve', 'Corrected Pressure Drag Polar'),
-         (r'Angle of Attack  $[^{\circ{}}]$',r'Corrected Drag Coefficient  $[-]$'),
-         (r'Corrected Lift Coefficient $[-]$',r'Corrected Lift Coefficient  $[-]$'),
-         ('blue','red'))
-    
-    # cm-a plot
-    plotXVals = np.array([alphaVals])
-    plotYVals = np.array([cmVals]) 
-    
-    plot(plotXVals, 
-         plotYVals,
-         (1,1),
          'Moment Coefficient Plot',
          (r'',),
-         (r'Angle of Attack  $[^{\circ{}}]$',),
-         (r'Leading Edge Moment Coefficient  $[-]$',),
-         ('purple',))
+         (r'Angle of Attack  $[^{\circ{}}]$', r'Angle of Attack  $[^{\circ{}}]$'),
+         (r'Leading Edge Moment Coefficient  $[-]$', r'Quarter-chord Moment Coefficient  $[-]$',),
+         ('purple', "#FF0077"))
     
-    # xcp plot
-    plotXVals = np.array([alphaVals])
-    plotYVals = np.array([xcpVals]) 
+    # # xcp plot
+    # plotXVals = np.array([alphaVals])
+    # plotYVals = np.array([xcpVals]) 
     
     # plot(plotXVals, 
     #      plotYVals,
@@ -117,30 +119,30 @@ if __name__ == '__main__':
 #     plotXVals = np.array([cdWakeVals, cdPressVals])
 #     plotYVals = np.array([clVals, clVals]) 
     # print(cdWakeVals)
-    plot(plotXVals, 
-         plotYVals,
-         (1,2),
-         'Variation of Drag with Lift Coefficient',
-         (r'Drag Polar from Wake Rake Data', 'Wake Rake and Pressure Drag Polars'),
-         (r'Drag Coefficient  $[-]$', r'Drag Coefficient  $[-]$',),
-         (r'Lift Coefficient  $[-]$', r'Lift Coefficient  $[-]$',),
-         ('orange', 'orange'))
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,2),
+    #      'Variation of Drag with Lift Coefficient',
+    #      (r'Drag Polar from Wake Rake Data', 'Wake Rake and Pressure Drag Polars'),
+    #      (r'Drag Coefficient  $[-]$', r'Drag Coefficient  $[-]$',),
+    #      (r'Lift Coefficient  $[-]$', r'Lift Coefficient  $[-]$',),
+    #      ('orange', 'orange'))
     
     # PLOTTING TWO GRAPHS IN 1
     
-    clCorrectedVals = np.array([]) # Placeholder
+    # clCorrectedVals = np.array([]) # Placeholder
     
-    plotXVals = np.array([alphaVals, alphaVals])
-    plotYVals = np.array([clVals, clCorrectedVals])
+    # plotXVals = np.array([alphaVals, alphaVals])
+    # plotYVals = np.array([clVals, clCorrectedVals])
     
-    plotPaula(plotXVals, 
-              plotYVals,
-              (1,1),
-              'Plot Title',
-              ('Uncorrected $c_{l} values', 'Corrected $c_{l} values'),
-              (r'Angle of Attack  $[^{\circ{}}]$',),
-              (r'Lift Coefficient  $[-]$',),
-              ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
+    # plotPaula(plotXVals, 
+    #           plotYVals,
+    #           (1,1),
+    #           'Plot Title',
+    #           ('Uncorrected $c_{l} values', 'Corrected $c_{l} values'),
+    #           (r'Angle of Attack  $[^{\circ{}}]$',),
+    #           (r'Lift Coefficient  $[-]$',),
+    #           ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
             
     
     

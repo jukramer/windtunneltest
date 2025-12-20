@@ -92,29 +92,29 @@ if __name__ == '__main__':
     #      ('blue','red'))
     
     # cm-a plot
-    plotXVals = np.array([alphaVals])
-    plotYVals = np.array([cmVals]) 
+    # plotXVals = np.array([alphaVals])
+    # plotYVals = np.array([cmVals]) 
     
-    plot(plotXVals, 
-         plotYVals,
-         (1,1),
-         'Leading Edge Moment Coefficient Plot',
-         (r'',),
-         (r'Angle of Attack  $[^{\circ{}}]$',),
-         (r'Leading Edge Moment Coefficient  $[-]$',),
-         ('purple',))
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,1),
+    #      'Leading Edge Moment Coefficient Plot',
+    #      (r'',),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',),
+    #      (r'Leading Edge Moment Coefficient  $[-]$',),
+    #      ('purple',))
     
-    plotXVals = np.array([alphaVals])
-    plotYVals = np.array([cmc4Vals]) 
+    # plotXVals = np.array([alphaVals])
+    # plotYVals = np.array([cmc4Vals]) 
     
-    plot(plotXVals, 
-         plotYVals,
-         (1,1),
-         'Quarter-chord Moment Coefficient Plot',
-         (r'',),
-         (r'Angle of Attack  $[^{\circ{}}]$',),
-         (r'Quarter-chord Moment Coefficient  $[-]$',),
-         ("#FF0077",))
+    # plot(plotXVals, 
+    #      plotYVals,
+    #      (1,1),
+    #      'Quarter-chord Moment Coefficient Plot',
+    #      (r'',),
+    #      (r'Angle of Attack  $[^{\circ{}}]$',),
+    #      (r'Quarter-chord Moment Coefficient  $[-]$',),
+    #      ("#FF0077",))
     
     # # xcp plot
     # plotXVals = np.array([alphaVals])

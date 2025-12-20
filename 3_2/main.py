@@ -142,19 +142,6 @@ if __name__ == '__main__':
     #      (r'Lift Coefficient  $[-]$',),
     #      ('orange',))
     
-<<<<<<< HEAD
-#     plotXVals = np.array([cdWakeVals, cdPressVals])
-#     plotYVals = np.array([clVals, clVals]) 
-#     print(cdWakeVals)
-#     plotPaula(plotXVals, 
-#          plotYVals,
-#          (1,1),
-#          'Drag Polars Superimposed',
-#          (r'$c_{d}$ from Wake Rake Data', r'$c_{d}$ from Surface Pressure Data'),
-#          (r'Drag Coefficient  $[-]$',),
-#          (r'Lift Coefficient  $[-]$',),
-#          ('orange', 'red'))
-=======
     # plotXVals = np.array([cdWakeVals, cdPressVals])
     # plotYVals = np.array([clVals, clVals]) 
     # print(cdWakeVals)
@@ -166,7 +153,6 @@ if __name__ == '__main__':
     #      (r'Drag Coefficient  $[-]$',),
     #      (r'Lift Coefficient  $[-]$',),
     #      ('orange', 'red'))
->>>>>>> 77935d1c030de4b5528cd8b084343355cda4e28f
     
     # PLOTTING TWO GRAPHS IN 1
     

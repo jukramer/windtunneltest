@@ -26,6 +26,9 @@ if __name__ == '__main__':
     cmVals = []
     xcpVals = []
     alphaVals = []
+    cl_cVals = []
+    cd_cVals = []
+    cm_cVals = []
     
     calc = Calc(BASE_DIR/'Data'/'sd6060.dat.txt')
     
@@ -33,7 +36,7 @@ if __name__ == '__main__':
         cpUpper, cpLower, positionsUpper, positionsLower, alpha = findCP(run)
         y1Vals, V1Vals, p1Vals, _ = findWakeVals(run)
         
-        cl, cdPressure, cdWake, cm, xcp = calc.calcAero(positionsUpper,
+        cl, cdPressure, cdWake, cm, xcp, cl_c, cd_c, cm_c = calc.calcAero(positionsUpper,
                                                         positionsLower,
                                                         cpLower,
                                                         cpUpper,
@@ -51,11 +54,15 @@ if __name__ == '__main__':
         cmVals.append(cm)
         xcpVals.append(xcp)
         alphaVals.append(alpha)
+        cl_cVals.append(cl_c)
+        cd_cVals.append(cd_c)
+        cm_cVals.append(cm_c)
         
     #cl-a plot   
     plotXVals = np.array([alphaVals, cdPressVals])
     plotYVals = np.array([clVals, clVals])    
-        
+    
+
     plot(plotXVals, 
          plotYVals,
          (1,2),
@@ -64,6 +71,19 @@ if __name__ == '__main__':
          ('Lift Curve', 'Pressure Drag Polar'),
          (r'Angle of Attack  $[^{\circ{}}]$',r'Drag Coefficient  $[-]$'),
          (r'Lift Coefficient $[-]$',r'Lift Coefficient  $[-]$'),
+         ('blue','red'))
+    
+    # corrected CL
+    plotXVals = np.array([alphaVals, cd_cVals])
+    plotYVals = np.array([cl_cVals,clVals])
+    plot(plotXVals, 
+         plotYVals,
+         (1,2),
+         'Corrected Aerodynamic Coefficient Plots',
+        #  (r'$c_{l}-\alpha{}$ Plot', r'$c_{l}-c_{d}$ Plot'),
+         ('Corrected Lift Curve', 'Corrected Pressure Drag Polar'),
+         (r'Angle of Attack  $[^{\circ{}}]$',r'Corrected Drag Coefficient  $[-]$'),
+         (r'Corrected Lift Coefficient $[-]$',r'Corrected Lift Coefficient  $[-]$'),
          ('blue','red'))
     
     # cm-a plot
@@ -96,7 +116,6 @@ if __name__ == '__main__':
 #     plotXVals = np.array([cdWakeVals, cdPressVals])
 #     plotYVals = np.array([clVals, clVals]) 
     # print(cdWakeVals)
-    print('i love github')
     plot(plotXVals, 
          plotYVals,
          (1,2),

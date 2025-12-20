@@ -164,7 +164,7 @@ if __name__ == '__main__':
     plotPaula(plotXVals, 
               plotYVals,
               (1,1),
-              'Plot Title',
+              'Measured Lift vs Corrected Lift ',
               ('Uncorrected $c_{l} values', 'Corrected $c_{l} values'),
               (r'Angle of Attack  $[^{\circ{}}]$',),
               (r'Lift Coefficient  $[-]$',),

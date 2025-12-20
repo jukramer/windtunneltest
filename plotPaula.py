@@ -31,7 +31,7 @@ class DimensionError(Exception):
     pass
 
 
-def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
+def plotPaula(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', subTitles: tuple=(), xLabels: tuple=(), yLabels: tuple=(), colors: tuple=()) -> None:
     # Check for correct parameter dimensions/types
     if yVals.shape != xVals.shape:
         raise DimensionError('xVals and yVals must have same length!')
@@ -50,12 +50,12 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     if len(subTitles) != nSubPlots:
         subTitles = nSubPlots*('',)
         print('Warning: Please specify the right amount of subtitles (1 per subplot). Defaulting to no titles.')
-    if len(xLabels) != nSubPlots:
-        xLabels = nSubPlots * ('',)
-        print('Warning: Please specify the right amount of x axis labels (1 per subplot). Defaulting to no titles.')   
-    if len(yLabels) != nSubPlots:
-        yLabels = nSubPlots * ('',)
-        print('Warning: Please specify the right amount of y axis labels (1 per subplot). Defaulting to no titles.')       
+    # if len(xLabels) != nSubPlots:
+    #     xLabels = nSubPlots * ('',)
+    #     print('Warning: Please specify the right amount of x axis labels (1 per subplot). Defaulting to no titles.')   
+    # if len(yLabels) != nSubPlots:
+    #     yLabels = nSubPlots * ('',)
+    #     print('Warning: Please specify the right amount of y axis labels (1 per subplot). Defaulting to no titles.')       
         
     # To allow for inhomogeneous y/sigma arrays (plots with different # of data points),
     # numpy arrays are unpacked into python lists
@@ -63,7 +63,7 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
     yArrays = [np.array(yVals[i]) for i in range(yVals.shape[0])]
         
     # Plotting
-    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10, 7))
+    fig, axs = plt.subplots(*dimSubplots, constrained_layout=True, figsize=(10,10))
     print(axs)
     try:
         if isinstance(axs[0,:], np.ndarray):
@@ -77,14 +77,15 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
         # Handle extra plots
         try:
             if i == 0:
-                ax.plot(xArrays[i], yArrays[i], color='red', marker='x')
-                ax.plot(xArrays[i-1], yArrays[i-1], color=colors[i], marker='x')
-                # ax.legend(fontsize=26)
+                ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x', label=subTitles[i])
+                ax.plot(xArrays[i+1], yArrays[i+1], color=colors[i+1], marker='x', label=subTitles[i+1])
+                ax.legend(fontsize=26)
             else:    
-                ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
+                # ax.plot(xArrays[i], yArrays[i], color=colors[i], marker='x')
+                break
                 
-            # ax.legend('wake velocity', 'freestream velocity')
-            # ax.axhline(18, color='red') # <- replace 20 with the freestream velocity
+            ax.legend()
+
         except IndexError:
             fig.delaxes(ax)
             continue
@@ -94,17 +95,18 @@ def plot(xVals: NDArray, yVals: NDArray, dimSubplots: tuple, figTitle: str='', s
         
         ax.set_xlabel(xLabels[i])    
         ax.set_ylabel(yLabels[i])    
-        ax.set_title(subTitles[i], fontsize = 28)    
+        # ax.set_title(subTitles[i], fontsize = 28)    
         ax.grid()
                 
     fig.suptitle(figTitle, weight='bold')
     plt.legend()
     plt.savefig(rf'Plots\{figTitle}.png')
     plt.show()
+    
 
 if __name__ == '__main__':
     # For testing
-    plot(np.array([[1,2,3], [1,2], [2,4,5,6,7]], dtype=object), 
+    plotPaula(np.array([[1,2,3], [1,2], [2,4,5,6,7]], dtype=object), 
                       np.array([[2,4,1], [3,5], [9,3,4,5,6]], dtype=object), 
                       (1,2),
                       'Test',

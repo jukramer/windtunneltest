@@ -12,46 +12,47 @@ def read_files(path, V, S):
     CL = 2 * Fy / (rho * V ** 2 * S)
     CD = 2 * Fx / (rho * V ** 2 * S)
     rho_avg = df["Rho"].mean()
+    T_avg = df["T"].mean()
 
-    return df["Alpha"], CL, CD, rho_avg
+    return df["Alpha"], CL, CD, rho_avg, T_avg
 
 
 V = 18
 S = 0.4169 * 0.16
 
-alpha_up, CL_up, CD_up, rho_avg_up  = read_files("../Data/EXP_measure_wing_up.txt", V, S)
-alpha_down, CL_down, CD_down, rho_avg_down = read_files("../Data/EXP_measure_wing _down.txt", V, S)
+alpha_up, CL_up, CD_up, rho_avg_up, T_avg_up  = read_files("../Data/EXP_measure_wing_up.txt", V, S)
+alpha_down, CL_down, CD_down, rho_avg_down, T_avg_down = read_files("../Data/EXP_measure_wing _down.txt", V, S)
 
-# print(rho_avg_down, rho_avg_up)
-plt.figure(figsize=(12, 5))
-
-# CL vs alpha
-plt.subplot(1, 2, 1)
-plt.plot(alpha_up, CL_up, color="red", marker=".", label= "Increasing angle of attack")
-plt.plot(alpha_down, CL_down, color="blue", marker=".", label= "Decreasing angle of attack")
-plt.xlabel("Alpha (deg)")
-plt.ylabel("CL")
-plt.title("Experimental CL vs Alpha")
-plt.grid(True)
-plt.legend()
-
-# CL vs CD
-plt.subplot(1, 2, 2)
-plt.plot(CD_up, CL_up, color="blue", marker=".", label= "Increasing angle of attack")
-plt.plot(CD_down, CL_down, color="red", marker=".", label= "Decreasing angle of attack")
-plt.xlabel("CD")
-plt.ylabel("CL")
-plt.title("Experimental CL vs CD")
-plt.grid(True)
-plt.legend()
-
-plt.tight_layout()
-plt.show()
-
-
-# alpha_list = df["Alpha"].to_list()
-# cl_list = CL.to_list()
-# cd_list = CD.to_list()
-# results = pd.DataFrame({"alpha": df["Alpha"], "CL": CL, "CD": CD})
-# avg = avg_int(rho)
-# print(avg)
+print(rho_avg_down, rho_avg_up, T_avg_down, T_avg_up)
+# plt.figure(figsize=(12, 5))
+#
+# # CL vs alpha
+# plt.subplot(1, 2, 1)
+# plt.plot(alpha_up, CL_up, color="red", marker=".", label= "Increasing angle of attack")
+# plt.plot(alpha_down, CL_down, color="blue", marker=".", label= "Decreasing angle of attack")
+# plt.xlabel("Alpha (deg)")
+# plt.ylabel("CL")
+# plt.title("Experimental CL vs Alpha")
+# plt.grid(True)
+# plt.legend()
+#
+# # CL vs CD
+# plt.subplot(1, 2, 2)
+# plt.plot(CD_up, CL_up, color="blue", marker=".", label= "Increasing angle of attack")
+# plt.plot(CD_down, CL_down, color="red", marker=".", label= "Decreasing angle of attack")
+# plt.xlabel("CD")
+# plt.ylabel("CL")
+# plt.title("Experimental CL vs CD")
+# plt.grid(True)
+# plt.legend()
+#
+# plt.tight_layout()
+# plt.show()
+#
+#
+# # alpha_list = df["Alpha"].to_list()
+# # cl_list = CL.to_list()
+# # cd_list = CD.to_list()
+# # results = pd.DataFrame({"alpha": df["Alpha"], "CL": CL, "CD": CD})
+# # avg = avg_int(rho)
+# # print(avg)

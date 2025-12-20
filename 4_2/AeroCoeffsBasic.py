@@ -3,9 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #define files to be read.
-files = {"LLT": "../Data/LLT_polars_T1.txt",
-    "VLM": "../Data/VLM_polars_T1.txt",
-    "Panel": "../Data/Panels_polars_T1.txt"}
+files = {"LLT": "../Data/LLT_polars_T2.txt",
+    "VLM": "../Data/VLM_polars_T2.txt",
+    "Panel": "../Data/Panels_polars_T2.txt"}
 
 results = {}
 
@@ -17,6 +17,8 @@ for m, path in files.items():
     alpha = read['alpha']
     CL = read['CL']
     TCD = read['TCd']
+    # ICD = read['ICd']
+    # PCD = read['PCd']
 
     alpha_lst = []
     CL_lst = []
@@ -25,7 +27,8 @@ for m, path in files.items():
     for i in range(1, len(alpha)):
         alpha_lst.append(float(alpha[i]))
         CL_lst.append(float(CL[i]))
-        TCD_lst.append(float(TCD[i]))
+        # TCD = float(PCD[i])+2*float(ICD[i])
+        TCD_lst.append(float(TCD[i])+0.015)
 
     results[m] = {"alpha": alpha_lst,"CL": CL_lst,"TCD": TCD_lst}
 

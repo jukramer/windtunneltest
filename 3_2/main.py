@@ -92,29 +92,29 @@ if __name__ == '__main__':
     #      ('blue','red'))
     
     # cm-a plot
-    # plotXVals = np.array([alphaVals])
-    # plotYVals = np.array([cmVals]) 
+    plotXVals = np.array([alphaVals])
+    plotYVals = np.array([cmVals]) 
     
-    # plot(plotXVals, 
-    #      plotYVals,
-    #      (1,1),
-    #      'Leading Edge Moment Coefficient Plot',
-    #      (r'',),
-    #      (r'Angle of Attack  $[^{\circ{}}]$',),
-    #      (r'Leading Edge Moment Coefficient  $[-]$',),
-    #      ('purple',))
+    plot(plotXVals, 
+         plotYVals,
+         (1,1),
+         'Leading Edge Moment Coefficient Plot',
+         (r'',),
+         (r'Angle of Attack  $[^{\circ{}}]$',),
+         (r'Leading Edge Moment Coefficient  $[-]$',),
+         ('purple',))
     
-    # plotXVals = np.array([alphaVals])
-    # plotYVals = np.array([cmc4Vals]) 
+    plotXVals = np.array([alphaVals])
+    plotYVals = np.array([cmc4Vals]) 
     
-    # plot(plotXVals, 
-    #      plotYVals,
-    #      (1,1),
-    #      'Quarter-chord Moment Coefficient Plot',
-    #      (r'',),
-    #      (r'Angle of Attack  $[^{\circ{}}]$',),
-    #      (r'Quarter-chord Moment Coefficient  $[-]$',),
-    #      ("#FF0077",))
+    plot(plotXVals, 
+         plotYVals,
+         (1,1),
+         'Quarter-chord Moment Coefficient Plot',
+         (r'',),
+         (r'Angle of Attack  $[^{\circ{}}]$',),
+         (r'Quarter-chord Moment Coefficient  $[-]$',),
+         ("#FF0077",))
     
     # # xcp plot
     # plotXVals = np.array([alphaVals])
@@ -142,6 +142,7 @@ if __name__ == '__main__':
     #      (r'Lift Coefficient  $[-]$',),
     #      ('orange',))
     
+<<<<<<< HEAD
 #     plotXVals = np.array([cdWakeVals, cdPressVals])
 #     plotYVals = np.array([clVals, clVals]) 
 #     print(cdWakeVals)
@@ -153,6 +154,19 @@ if __name__ == '__main__':
 #          (r'Drag Coefficient  $[-]$',),
 #          (r'Lift Coefficient  $[-]$',),
 #          ('orange', 'red'))
+=======
+    # plotXVals = np.array([cdWakeVals, cdPressVals])
+    # plotYVals = np.array([clVals, clVals]) 
+    # print(cdWakeVals)
+    # plotPaula(plotXVals, 
+    #      plotYVals,
+    #      (1,1),
+    #      'Drag Polars Superimposed',
+    #      (r'$c_{d}$ from Wake Rake Data', r'$c_{d}$ from Surface Pressure Data'),
+    #      (r'Drag Coefficient  $[-]$',),
+    #      (r'Lift Coefficient  $[-]$',),
+    #      ('orange', 'red'))
+>>>>>>> 77935d1c030de4b5528cd8b084343355cda4e28f
     
     # PLOTTING TWO GRAPHS IN 1
     

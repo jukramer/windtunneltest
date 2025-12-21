@@ -62,10 +62,10 @@ if __name__ == '__main__':
         cmc4Vals.append(cmc4)
 
     
-    # print('This is CL array:\n')
-    # print(clVals)
-    # print('This is Cd array:\n')
-    # print(cdPressVals)
+    print('This is corrected CL array:\n')
+    print(cl_cVals)
+    print('This is corrected Cd array:\n')
+    print(cd_cVals)
     # print('This is cm array: \n')
     # print(cmc4Vals)
     # print('This is AoA')

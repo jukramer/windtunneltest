@@ -62,6 +62,16 @@ if __name__ == '__main__':
         cmc4Vals.append(cmc4)
 
     
+    # print('This is CL array:\n')
+    # print(clVals)
+    # print('This is Cd array:\n')
+    # print(cdPressVals)
+    # print('This is cm array: \n')
+    # print(cmc4Vals)
+    # print('This is AoA')
+    # print(alphaVals)
+    # print('This is wake drag \n')
+    # print(cdWakeVals)
 
     # #cl-a plot   
     # plotXVals = np.array([alphaVals, cdPressVals])
@@ -197,18 +207,18 @@ if __name__ == '__main__':
     #           (r'Lift Coefficient  $[-]$',),
     #           ('blue', 'orange'))
     
-    # CORRECTIED CM VS CM 
-    plotXVals = np.array([alphaVals, alphaVals])
-    plotYVals = np.array([cmc4Vals, cm_cVals])
+    # # CORRECTIED CM VS CM 
+    # plotXVals = np.array([alphaVals, alphaVals])
+    # plotYVals = np.array([cmc4Vals, cm_cVals])
     
-    plotPaula(plotXVals, 
-              plotYVals,
-              (1,1),
-              '',
-              ('Measured values', 'Corrected values'),
-              (r'Angle of Attack  $[^{\circ{}}]$',),
-              (r'Moment Coefficient  $[-]$',),
-              ('blue', 'orange'))
+    # plotPaula(plotXVals, 
+    #           plotYVals,
+    #           (1,1),
+    #           '',
+    #           ('Measured values', 'Corrected values'),
+    #           (r'Angle of Attack  $[^{\circ{}}]$',),
+    #           (r'Moment Coefficient  $[-]$',),
+    #           ('blue', 'orange'))
 
             
     

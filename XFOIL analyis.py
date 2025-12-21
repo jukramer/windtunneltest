@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 from numpy.typing import NDArray
+from plotPaula import *
 
 mpl.rcParams.update({
     'axes.labelsize': 20,   # x/y label size

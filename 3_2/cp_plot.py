@@ -1,12 +1,12 @@
 import math
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 import numpy as np
 from pathlib import Path
 
 
 # FILE_PATH = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\3_2\raw_Group6_2d.txt"
-BASE_DIR = Path(__file__).resolve().parent.parent
-FILE_PATH = BASE_DIR/'Data'/'raw_Group6_2d.txt'
+FILE_PATH = r"raw_Group6_2d.txt"
 # CHORDWISE_POSITIONS_FILE = r"C:\Users\teres\Desktop\Wind Tunnel\windtunneltest\positions_p.txt"
 
 Vinf = 18.22  # m/s
@@ -73,7 +73,7 @@ def plot_cp_profile(C_p, alpha):
     plt.plot(positions_lower, C_p_lower, marker='o', linestyle='-', label='Lower surface')
 
     plt.gca().invert_yaxis()
-    plt.xlabel('Chordwise position (%)')
+    plt.xlabel('Chordwise position ($x/c$)')
     plt.ylabel('Pressure coefficient Cp')
     plt.title(f'Cp distribution (α = {alpha:.2f}°)')
     plt.grid(True)
@@ -131,10 +131,12 @@ def plotCP(runNum):
 
 def main():
     data = load_data(FILE_PATH)
-    # chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
+    #chordwise_positions = load_chordwise_positions(CHORDWISE_POSITIONS_FILE)
+    #Choose which run to plot (Run_nr is first column in file)
+    selected_run_nr = 3
 
     # Choose which run to plot (Run_nr is first column in file)
-    selected_run_nr = 8
+    selected_run_nr = 1
 
     C_p, alpha = calculate_cp(data, selected_run_nr)
 
@@ -146,4 +148,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-#hello

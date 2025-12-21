@@ -13,17 +13,19 @@ def read_files(path, V, S):
     CD = 2 * Fx / (rho * V ** 2 * S)
     rho_avg = df["Rho"].mean()
     T_avg = df["T"].mean()
+    DPB = df["Delta_Pb"].mean()
 
-    return df["Alpha"], CL, CD, rho_avg, T_avg
+    return df["Alpha"], CL, CD, rho_avg, T_avg, DPB
 
 
 V = 18
 S = 0.4169 * 0.16
 
-alpha_up, CL_up, CD_up, rho_avg_up, T_avg_up  = read_files("../Data/EXP_measure_wing_up.txt", V, S)
-alpha_down, CL_down, CD_down, rho_avg_down, T_avg_down = read_files("../Data/EXP_measure_wing _down.txt", V, S)
+alpha_up, CL_up, CD_up, rho_avg_up, T_avg_up, DPB_avg_up  = read_files("../Data/EXP_measure_wing_up.txt", V, S)
+alpha_down, CL_down, CD_down, rho_avg_down, T_avg_down, DPB_avg_down = read_files("../Data/EXP_measure_wing _down.txt", V, S)
 
-# print(rho_avg_down, rho_avg_up, T_avg_down, T_avg_up)
+#print(rho_avg_up, T_avg_up, DPB_avg_up)
+#print(rho_avg_down, T_avg_down, DPB_avg_down)
 plt.figure(figsize=(12, 5))
 
 # CL vs alpha

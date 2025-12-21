@@ -9,7 +9,7 @@ files = {"LLT": "../Data/LLT_polars_T2.txt",
 
 results = {}
 
-#all lists for the separate simulation files
+#fill sep. lists
 for m, path in files.items():
 
     read = pd.read_csv( path, delim_whitespace = True, skiprows = range(0, 6))
@@ -17,7 +17,7 @@ for m, path in files.items():
     alpha = read['alpha']
     CL = read['CL']
     ICD = read['ICd']
-    # ICD = read['ICd']
+    # TCD = read['TCd']
     # PCD = read['PCd']
 
     alpha_lst = []
@@ -32,7 +32,7 @@ for m, path in files.items():
 
     results[m] = {"alpha": alpha_lst,"CL": CL_lst,"ICD": ICD_lst}
 
-#Experimetnal results
+#Exp
 def read_files(path, d, AR, V, S):
     df = pd.read_csv(path, delim_whitespace=True,skiprows=[1])
 
@@ -56,21 +56,7 @@ alpha_exp, CDi_exp = read_files("../Data/EXP_measure_wing_dragcomp.txt", d, AR, 
 plt.figure(figsize=(12, 6))
 mark = {"LLT": ".", "VLM": "x","Panel": "|"}
 
-# #Cl vs a plot
-# plt.subplot(1, 2, 1)
-#
-# for m, data in results.items():
-#     plt.plot(data["alpha"], data["CL"], marker = mark[m],label=m)
-#
-# plt.plot(alpha_up, CL_up, marker = "o",label="Experimental Results")
-# plt.xlabel(r'$\alpha$')
-# plt.ylabel(r'$C_L$')
-# # plt.title('CL vs Alpha')
-# plt.grid(True)
-# plt.legend()
 
-# CL vs total CD plot
-# plt.subplot(1, 2, 2)
 for m, data in results.items():
     plt.plot(data["alpha"],data["ICD"],marker = mark[m],label=m)
 
@@ -82,40 +68,5 @@ plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
-plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\GlobalInducedDragNEWtau.pdf', bbox_inches='tight')
 plt.show()
 
-
-# #Read content
-# read = pd.read_csv ('../Data/LLT_polars_T1.txt', delim_whitespace = True, skiprows = range(0,6))
-# alpha = read ['alpha']
-# CL = read ["CL"]
-# TCD = read ["TCd"]
-# alpha_lst = []
-# CL_lst = []
-# TCD_lst = []
-#
-# #Put data in lists
-# for i in range (1 , len(alpha)):
-#     alpha_lst.append(float(alpha[i]))
-#     CL_lst.append(float(CL[i]))
-#     TCD_lst.append(float(TCD[i]))
-#
-# # print(alpha_lst, fx_lst, fy_lst)
-#
-# # Plots
-# plt.figure ( figsize =(12 , 6))
-#
-# plt.subplot (1 , 2 , 1)
-# plt.plot ( alpha_lst, CL_lst, 'b-o')
-# plt.xlabel ('Alpha(degrees)')
-# plt.ylabel ('CL ()')
-# plt.title ('CL vs Alpha')
-#
-# plt.subplot (1 , 2 , 2)
-# plt.plot ( TCD_lst , CL_lst , 'b-o')
-# plt.ylabel ('CL ()')
-# plt.xlabel ('TCD (N)')
-# plt.title ('CL vs Total CD')
-# plt.tight_layout ()
-# plt.show ()

@@ -70,10 +70,3 @@ plt.tight_layout()
 plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\AirfoilVsFinite.pdf', bbox_inches='tight')
 plt.show()
 
-
-# alpha_list = df["Alpha"].to_list()
-# cl_list = CL.to_list()
-# cd_list = CD.to_list()
-# results = pd.DataFrame({"alpha": df["Alpha"], "CL": CL, "CD": CD})
-# avg = avg_int(rho)
-# print(avg)

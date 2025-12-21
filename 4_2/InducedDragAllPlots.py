@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-#define files to be read.
+#read loop base
 cases = {r"-3$^\circ$": {"LLT": "../Data/Span/-3/LLT_span_Cd_-3.txt", "VLM": "../Data/Span/-3/VLM_span_Cd_-3.txt", "Panel": "../Data/Span/-3/Panels_span_Cd_-3.txt"},
     r"0$^\circ$": {"LLT": "../Data/Span/0/LLT_span_Cd_0.txt", "VLM": "../Data/Span/0/VLM_span_Cd_0.txt", "Panel": "../Data/Span/0/Panels_span_Cd_0.txt"},
     r"3$^\circ$": {"LLT": "../Data/Span/3/LLT_span_Cd_3.txt", "VLM": "../Data/Span/3/VLM_span_Cd_3.txt", "Panel": "../Data/Span/3/Panels_span_Cd_3.txt"},
@@ -13,7 +13,7 @@ cases = {r"-3$^\circ$": {"LLT": "../Data/Span/-3/LLT_span_Cd_-3.txt", "VLM": "..
 
 results = {}
 
-#all lists for the separate simulation files
+#read files def earlier
 def read_spanwise_ICd(path, b=0.4169):
 
     read = pd.read_csv( path, delim_whitespace=True, skiprows=list(range(0, 20)) + list(range(58, 1000)), header=None,
@@ -61,25 +61,6 @@ for idx, (ax, (case_name, files)) in enumerate(zip(axes, cases.items())):
     ax.text(0.5, -0.22,rf"$\mathbf{{{labels[idx]}}}$ {case_name}",transform=ax.transAxes,ha="center",va="top",fontsize=12)
 
     ax.grid(True)
-
-
-
-# for ax, (case_name, files) in zip(axes, cases.items()):
-#
-#     for method, path in files.items():
-#         y, ICd = read_spanwise_ICd(path)
-#         ax.plot(y, ICd, marker=markers[method], label=method)
-#
-#     # axis labels (each subplot has its own)
-#     ax.set_xlabel(r"Spanwise location")
-#     ax.set_ylabel(r"Induced $C_D$")
-#     plt.axhline(0, linewidth=0.8, color="k")
-#     plt.axvline(0, linewidth=0.8, color="k")
-#
-#     # subtitle BELOW the subplot
-#     ax.text(0.5, -0.25,case_name,transform=ax.transAxes,ha="center",va="top",fontsize=11)
-#     ax.grid(True)
-
 
 handles, labels = axes[0].get_legend_handles_labels()
 

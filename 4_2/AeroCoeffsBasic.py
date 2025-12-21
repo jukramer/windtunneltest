@@ -2,14 +2,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-#define files to be read.
+#riles to read
 files = {"LLT": "../Data/LLT_polars_T2.txt",
     "VLM": "../Data/VLM_polars_T2.txt",
     "Panel": "../Data/Panels_polars_T2.txt"}
 
 results = {}
 
-#all lists for the separate simulation files
+#lists for the separate simulation files
 for m, path in files.items():
 
     read = pd.read_csv( path, delim_whitespace = True, skiprows = range(0, 6))
@@ -81,40 +81,4 @@ plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
-# plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\NumericalVsExperiment3D.pdf', bbox_inches='tight')
 plt.show()
-
-
-# #Read content
-# read = pd.read_csv ('../Data/LLT_polars_T1.txt', delim_whitespace = True, skiprows = range(0,6))
-# alpha = read ['alpha']
-# CL = read ["CL"]
-# TCD = read ["TCd"]
-# alpha_lst = []
-# CL_lst = []
-# TCD_lst = []
-#
-# #Put data in lists
-# for i in range (1 , len(alpha)):
-#     alpha_lst.append(float(alpha[i]))
-#     CL_lst.append(float(CL[i]))
-#     TCD_lst.append(float(TCD[i]))
-#
-# # print(alpha_lst, fx_lst, fy_lst)
-#
-# # Plots
-# plt.figure ( figsize =(12 , 6))
-#
-# plt.subplot (1 , 2 , 1)
-# plt.plot ( alpha_lst, CL_lst, 'b-o')
-# plt.xlabel ('Alpha(degrees)')
-# plt.ylabel ('CL ()')
-# plt.title ('CL vs Alpha')
-#
-# plt.subplot (1 , 2 , 2)
-# plt.plot ( TCD_lst , CL_lst , 'b-o')
-# plt.ylabel ('CL ()')
-# plt.xlabel ('TCD (N)')
-# plt.title ('CL vs Total CD')
-# plt.tight_layout ()
-# plt.show ()

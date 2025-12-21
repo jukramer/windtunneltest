@@ -56,26 +56,18 @@ AR = 416.9/160
 alpha_exp, CDi_exp = read_files("../Data/EXP_measure_wing_up.txt", d, AR, V, S)
 
 def get_experimental_CDi(alpha_target, alpha_exp, CDi_exp):
-
     idx = np.argmin(np.abs(alpha_exp - alpha_target))
-
     return CDi_exp.iloc[idx]
 
+#span avg but all results nan.  maybe no element separation?
 def spanwise_average(y, ICd):
     y = np.asarray(y, dtype=float)
     ICd = np.asarray(ICd, dtype=float)
 
-    # remove NaNs
+    # Nan fix???
     mask = ~np.isnan(y) & ~np.isnan(ICd)
     y = y[mask]
     ICd = ICd[mask]
-
-    # sort by spanwise location
-    idx = np.argsort(y)
-    y = y[idx]
-    ICd = ICd[idx]
-
-    # safety check
     if len(y) < 2 or y[-1] == y[0]:
         return np.nan
 
@@ -139,5 +131,4 @@ fig.legend(handles, labels,loc="lower center",ncol=4,frameon=False,bbox_to_ancho
 
 
 plt.tight_layout(rect=[0, 0.12, 1, 1])
-plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\SpanwiseInducedDrag.pdf', bbox_inches='tight')
 plt.show()

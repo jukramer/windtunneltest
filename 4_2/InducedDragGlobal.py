@@ -40,16 +40,16 @@ def read_files(path, d, AR, V, S):
     Fy = df["Fy"]
     CL = 2 * Fy / (rho * V ** 2 * S)
     # CDi = (1+d)**(-1) * CL**2 / (AR * np.pi)
-    CDi = (1 + d) **-1 * CL ** 2 / (AR * np.pi)
+    CDi = (1+d) * CL ** 2 / (AR * np.pi)
 
     return df["Alpha"], CDi
 
 V = 18
 S = 0.4169 * 0.16
-d = 0.843
+d = 0.25
 AR = 416.9/160
 
-alpha_exp, CDi_exp = read_files("../Data/EXP_measure_wing_up.txt", d, AR, V, S)
+alpha_exp, CDi_exp = read_files("../Data/EXP_measure_wing_dragcomp.txt", d, AR, V, S)
 
 
 #plot it all
@@ -74,7 +74,7 @@ mark = {"LLT": ".", "VLM": "x","Panel": "|"}
 for m, data in results.items():
     plt.plot(data["alpha"],data["ICD"],marker = mark[m],label=m)
 
-plt.plot(alpha_exp, CDi_exp, marker = "o",label="EXP")
+plt.plot(alpha_exp, CDi_exp, marker = "o",label="EXP idealized")
 plt.xlabel(r'$\alpha$')
 plt.ylabel(r'Induced $C_D$')
 # plt.title('CL vs Total CD')
@@ -82,7 +82,7 @@ plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
-# plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\GlobalInducedDrag.pdf', bbox_inches='tight')
+plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\GlobalInducedDragNEWtau.pdf', bbox_inches='tight')
 plt.show()
 
 

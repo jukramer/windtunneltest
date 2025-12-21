@@ -40,8 +40,8 @@ plt.legend()
 
 # CL vs CD
 plt.subplot(1, 2, 2)
-plt.plot(CD_up, CL_up, color="blue", marker=".", label= "Increasing angle of attack")
-plt.plot(CD_down, CL_down, color="red", marker=".", label= "Decreasing angle of attack")
+plt.plot(CD_up, CL_up, color="red", marker=".", label= "Increasing angle of attack")
+plt.plot(CD_down, CL_down, color="blue", marker=".", label= "Decreasing angle of attack")
 plt.xlabel(r'$C_D$')
 plt.ylabel(r'$C_L$')
 # plt.title("Experimental CL vs CD")
@@ -49,7 +49,7 @@ plt.grid(True)
 plt.legend()
 
 plt.tight_layout()
-# plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\ExperimentEval3D.pdf', bbox_inches='tight')
+plt.savefig(r'C:\Users\maria\OneDrive\Documents\Uni\Year 2\WindTunner\Results\ExperimentEval3D.pdf', bbox_inches='tight')
 plt.show()
 
 

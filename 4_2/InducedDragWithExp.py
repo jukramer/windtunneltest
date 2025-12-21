@@ -43,13 +43,13 @@ def read_files(path, d, AR, V, S):
     Fy = df["Fy"]
     CL = 2 * Fy / (rho * V ** 2 * S)
     # CDi = (1+d)**(-1) * CL**2 / (AR * np.pi)
-    CDi = (1 + d) **-1 * CL ** 2 / (AR * np.pi)
+    CDi = (1 + d)* CL ** 2 / (AR * np.pi)
 
     return df["Alpha"], CDi
 
 V = 18
 S = 0.4169 * 0.16
-d = 0.843
+d = 0.25
 AR = 416.9/160
 
 

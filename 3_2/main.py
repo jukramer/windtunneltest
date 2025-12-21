@@ -180,19 +180,19 @@ if __name__ == '__main__':
     #           (r'Lift Coefficient  $[-]$',),
     #           ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
     
-    # # CORRECTED CD VS CD
+    # CORRECTED CD VS CD
     
-    # plotXVals = np.array([alphaVals, alphaVals])
-    # plotYVals = np.array([cdPressVals, cd_cVals])
+    plotXVals = np.array([alphaVals, alphaVals])
+    plotYVals = np.array([cdWakeVals, cd_cVals])
     
-    # plotPaula(plotXVals, 
-    #           plotYVals,
-    #           (1,1),
-    #           '',
-    #           ('Uncorrected values', 'Corrected values'),
-    #           (r'Angle of Attack  $[^{\circ{}}]$',),
-    #           (r'Drag Coefficient  $[-]$',),
-    #           ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
+    plotPaula(plotXVals, 
+              plotYVals,
+              (1,1),
+              '',
+              ('Uncorrected values', 'Corrected values'),
+              (r'Angle of Attack  $[^{\circ{}}]$',),
+              (r'Drag Coefficient  $[-]$',),
+              ('blue', 'orange')) # <- define the two colors you want for your plots (uncorrected, corrected)
 
     # # CORRRECTED DRAG POLAR VS DRAG POLAR
     # plotXVals = np.array([cdPressVals, cd_cVals])
